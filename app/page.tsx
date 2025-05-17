@@ -7,7 +7,7 @@ type BlogPost = {
   authorImage: string;
   authorName: string;
   id: string;
-  creactedAt: Date;
+  createdAt: Date;
 };
 
 async function getData() {
@@ -19,7 +19,7 @@ async function getData() {
       authorImage: true,
       authorName: true,
       id: true,
-      creactedAt: true,
+      createdAt: true,
     },
   });
 
