@@ -1,25 +1,18 @@
+import { BlogPost } from "@/lib/generated/prisma";
 import { prisma } from "./utils/db";
-
-type BlogPost = {
-  title: string;
-  content: string;
-  imageUrl: string;
-  authorImage: string;
-  authorName: string;
-  id: string;
-  createdAt: Date;
-};
 
 async function getData() {
   const data: BlogPost[] = await prisma.blogPost.findMany({
     select: {
+      id: true,
       title: true,
       content: true,
       imageUrl: true,
       authorImage: true,
       authorName: true,
-      id: true,
+      authorId: true,
       createdAt: true,
+      updatedAt: true,
     },
   });
 
