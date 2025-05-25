@@ -1,5 +1,8 @@
 import { BlogPost } from "@/lib/generated/prisma";
 import { prisma } from "./utils/db";
+import { BlogPostCard } from "@/components/BlogpostCard";
+import { Suspense } from "react";
+import { BlogpostSkeleton } from "@/components/BlogpostSkeleton";
 
 async function getData() {
   const data: BlogPost[] = await prisma.blogPost.findMany({
@@ -19,21 +22,27 @@ async function getData() {
   return data;
 }
 
-export default async function Home() {
-  const data = await getData();
-
+export default function Home() {
   return (
     <div className="py-6">
       <h1 className="text-3xl font-bold tracking-tight mb-8">Latest Posts</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {data.map((item: BlogPost) => (
-          <div key={item.title} className="bg-white p-4 rounded shadow">
-            <h2 className="text-lg font-semibold mb-2">{item.title}</h2>
-            <p>{item.content}</p>
-          </div>
-        ))}
-      </div>
+      {/* Suspense boundary doesn't work on async functions */}
+      <Suspense fallback={<BlogpostSkeleton />}>
+        <BlogPosts />
+      </Suspense>
+    </div>
+  );
+}
+
+async function BlogPosts() {
+  const data = await getData();
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {data.map((item: BlogPost) => (
+        <BlogPostCard data={item} key={item.id} />
+      ))}
     </div>
   );
 }
