@@ -1,5 +1,5 @@
 import { handleSubmission } from "@/app/actions";
-import { Button } from "@/components/ui/button";
+import { SubmitButton } from "@/components/SubmitButton";
 import {
   Card,
   CardContent,
@@ -36,7 +36,7 @@ export default function CreateBlogRoute() {
               <Input name="url" required type="url" placeholder="Image url" />
             </div>
 
-            <Button>Create Post</Button>
+            <SubmitButton />
           </form>
         </CardContent>
       </Card>
