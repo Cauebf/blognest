@@ -29,11 +29,11 @@ export function BlogPostCard({ data }: IappProps) {
         </div>
 
         <div className="p-4">
-          <h3 className="mb-2 text-lg font-semibold text-gray-900">
+          <h3 className="mb-2 text-lg font-semibold text-gray-900 capitalize">
             {data.title}
           </h3>
 
-          <p className="mb-4 text-sm text-gray-600 line-clamp-2">
+          <p className="mb-4 text-sm text-gray-600 line-clamp-2 capitalize">
             {data.content}
           </p>
 
