@@ -9,7 +9,7 @@ import {
 import { buttonVariants } from "./ui/button";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
-export async function Navbar() {
+export function Navbar() {
   const { getUser } = useKindeBrowserClient();
   const user = getUser();
 
